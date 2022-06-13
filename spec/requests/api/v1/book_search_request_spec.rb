@@ -44,7 +44,7 @@ RSpec.describe 'book search request' do
     expect(response.status).to eq(404)
   end
 
-  it 'returns error message if quantity is not valid' do
+  it 'returns error message if quantity is not valid', :vcr do
     params = { location: 'denver,co', quantity: 0 }
 
     headers = { 'CONTENT_TYPE' => 'application/json', 'Accept' => 'application/json' }

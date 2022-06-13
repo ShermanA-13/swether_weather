@@ -1,6 +1,6 @@
 require 'rails_helper'
 RSpec.describe 'background request' do
-  it 'returns json' do
+  it 'returns json', :vcr do
     headers = { 'CONTENT_TYPE' => 'application/json', 'Accept' => 'application/json' }
     get '/api/v1/backgrounds', headers: headers, params: { location: 'denver,co' }
     background = JSON.parse(response.body, symbolize_names: true)
@@ -22,7 +22,7 @@ RSpec.describe 'background request' do
     expect(background[:data][:attributes]).to_not have_key(:height)
   end
 
-  it 'returns 404 when invalid params are given' do
+  it 'returns 404 when invalid params are given', :vcr do
     headers = { 'CONTENT_TYPE' => 'application/json', 'Accept' => 'application/json' }
     get '/api/v1/backgrounds', headers: headers, params: { photo: 'ksdkjas' }
     expect(response).to_not be_successful

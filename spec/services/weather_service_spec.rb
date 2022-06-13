@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Weather Service' do
-  it 'returns a faraday response' do
+  it 'returns a faraday response', :vcr do
     connection = WeatherService.conn
     expect(connection).to be_a(Faraday::Connection)
   end
 
-  it 'returns weather data form longitude and latitude' do
+  it 'returns weather data form longitude and latitude', :vcr do
     data = { lat: 39.738453, lng: -104.984853 }
     forecast = WeatherService.get_weather(data[:lat], data[:lng])
     expect(forecast).to be_a Hash

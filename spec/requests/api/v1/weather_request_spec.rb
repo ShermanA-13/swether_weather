@@ -1,6 +1,6 @@
 require 'rails_helper'
 RSpec.describe 'weather request' do
-  it 'returns json' do
+  it 'returns json', :vcr do
     headers = { 'CONTENT_TYPE' => 'application/json', 'Accept' => 'application/json' }
     get '/api/v1/weather', headers: headers, params: { location: 'denver,co' }
     forecast = JSON.parse(response.body, symbolize_names: true)
@@ -64,7 +64,7 @@ RSpec.describe 'weather request' do
     expect(forecast[:data][:attributes][:hourly_weather][0]).to_not have_key(:wind_gust)
   end
 
-  it 'returns 404 when invalid params are sent' do
+  it 'returns 404 when invalid params are sent', :vcr do
     headers = { 'CONTENT_TYPE' => 'application/json', 'Accept' => 'application/json' }
     get '/api/v1/weather', headers: headers, params: { weather: 'denver,co' }
     expect(response).to_not be_successful
