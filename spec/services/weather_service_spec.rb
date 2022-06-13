@@ -7,8 +7,8 @@ RSpec.describe 'Weather Service' do
   end
 
   it 'returns weather data form longitude and latitude' do
-    data = { lat: 39.738453, lon: -104.984853 }
-    forecast = WeatherService.get_weather(data[:lat], data[:lon])
+    data = { lat: 39.738453, lng: -104.984853 }
+    forecast = WeatherService.get_weather(data[:lat], data[:lng])
     expect(forecast).to be_a Hash
     expect(forecast).to_not have_key(:minutely)
     expect(forecast[:current]).to have_key(:dt)
