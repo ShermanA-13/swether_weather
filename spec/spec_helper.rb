@@ -13,6 +13,7 @@
 # it.
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'simplecov'
 SimpleCov.start 'rails'
 SimpleCov.add_filter ['channels', 'jobs', 'mailers', 'models/application_record.rb']
 RSpec.configure do |config|
@@ -91,17 +92,4 @@ RSpec.configure do |config|
   #   # test failures related to randomization by passing the same `--seed` value
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
-end
-VCR.configure do |config|
-  config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-  config.hook_into :webmock
-  config.configure_rspec_metadata!
-  config.default_cassette_options = { re_record_interval: 7.days }
-  config.allow_http_connections_when_no_cassette = true
-end
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
-  end
 end
