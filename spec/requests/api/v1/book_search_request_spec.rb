@@ -50,7 +50,6 @@ RSpec.describe 'book search request' do
     headers = { 'CONTENT_TYPE' => 'application/json', 'Accept' => 'application/json' }
     get '/api/v1/book-search', headers: headers, params: params
     book_response = JSON.parse(response.body, symbolize_names: true)
-    binding.pry
     expect(response.status).to eq(200)
     expect(book_response).to have_key(:data)
     expect(book_response[:data]).to have_key(:message)
