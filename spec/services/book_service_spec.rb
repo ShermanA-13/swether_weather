@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Book Service' do
   it 'returns a faraday response', :vcr do
-    connection = BookService.connection
+    connection = BookService.conn
     expect(connection).to be_a(Faraday::Connection)
   end
 
