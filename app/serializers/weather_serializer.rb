@@ -8,36 +8,19 @@ class WeatherSerializer
          {
            "current_weather":
            {
-             "datetime": Time.at(forecast[:current][:dt]),
-             "sunrise": Time.at(forecast[:current][:sunrise]),
-             "sunset": Time.at(forecast[:current][:sunset]),
-             "temp": forecast[:current][:temp],
-             "feels_like": forecast[:current][:feels_like],
-             "humidity": forecast[:current][:humidity],
-             "uvi": forecast[:current][:uvi],
-             "visibility": forecast[:current][:visibility],
-             "conditions": forecast[:current][:weather][0][:description],
-             "icon": forecast[:current][:weather][0][:icon]
+             "datetime": forecast.datetime,
+             "sunrise": forecast.sunrise,
+             "sunset": forecast.sunset,
+             "temp": forecast.temp,
+             "feels_like": forecast.feels_like,
+             "humidity": forecast.humidity,
+             "uvi": forecast.uvi,
+             "visibility": forecast.visibility,
+             "conditions": forecast.conditions,
+             "icon": forecast.icon
            },
-           "daily_weather": forecast[:daily].shift(5).map do |day|
-                              {
-                                "datetime": Date.jd(day[:dt]),
-                                "sunrise": Time.at(day[:sunrise]),
-                                "sunset": Time.at(day[:sunset]),
-                                "max_temp": day[:temp][:max],
-                                "min_temp": day[:temp][:min],
-                                "conditions": day[:weather][0][:description],
-                                "icon": day[:weather][0][:icon]
-                              }
-                            end,
-           "hourly_weather": forecast[:hourly].shift(8).map do |hour|
-                               {
-                                 "time": Time.at(hour[:dt]),
-                                 "temp": hour[:temp],
-                                 "conditions": hour[:weather][0][:description],
-                                 "icon": hour[:weather][0][:icon]
-                               }
-                             end
+           "daily_weather": forecast.daily_weather,
+           "hourly_weather": forecast.hourly_weather
          }
       } }
   end

@@ -4,6 +4,7 @@ RSpec.describe 'weather request' do
     headers = { 'CONTENT_TYPE' => 'application/json', 'Accept' => 'application/json' }
     get '/api/v1/weather', headers: headers, params: { location: 'denver,co' }
     forecast = JSON.parse(response.body, symbolize_names: true)
+
     expect(response).to be_successful
     expect(response.status).to eq(200)
     expect(forecast).to be_a Hash
