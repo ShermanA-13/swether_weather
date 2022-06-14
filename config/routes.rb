@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get '/weather', to: 'weather#index'
       get '/backgrounds', to: 'backgrounds#index'
       get '/book-search', to: 'book_search#index'
+      post '/users', to: 'users#create'
     end
   end
 end
