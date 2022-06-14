@@ -10,7 +10,7 @@ class Api::V1::WeatherController < ApplicationController
 
   def check_location
     if params[:location].present?
-      @coordinates = LocationFacade.get_coords(params[:location])
+      @coordinates = MapFacade.get_coords(params[:location])
     else
       render status: 404
     end

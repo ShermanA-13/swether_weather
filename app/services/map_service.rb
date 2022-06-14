@@ -1,4 +1,4 @@
-class LocationService
+class MapService
   class << self
     def conn
       url = 'http://www.mapquestapi.com/geocoding/v1/address?'

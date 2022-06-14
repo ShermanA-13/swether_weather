@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'Location Service' do
+RSpec.describe 'Map Service' do
   it 'returns a faraday response', :vcr do
-    connection = LocationService.conn
+    connection = MapService.conn
     expect(connection).to be_a(Faraday::Connection)
   end
 
   it 'returns longitude and lattitude', :vcr do
-    get_location = LocationService.get_coordinates('Denver,CO')
+    get_location = MapService.get_coordinates('Denver,CO')
     expect(get_location).to be_a Hash
     expect(get_location[:results]).to be_a Array
     expect(get_location[:results][0]).to be_a Hash
