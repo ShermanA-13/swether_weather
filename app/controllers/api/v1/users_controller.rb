@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
     if user.save
       render json: UserSerializer.user_data(user), status: 201
     else
-      render status: 404
+      render json: { error: user.errors.full_messages.to_sentence }, status: 404
     end
   end
 
