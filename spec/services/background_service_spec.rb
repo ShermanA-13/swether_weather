@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Background Service' do
-  it 'returns a faraday response' do
+  it 'returns a faraday response', :vcr do
     connection = BackgroundService.conn
     expect(connection).to be_a(Faraday::Connection)
   end
 
-  it 'returns forecast data form longitude and latitude' do
+  it 'returns forecast data form longitude and latitude', :vcr do
     data = 'denver,co'
     background = BackgroundService.get_image(data)
 
