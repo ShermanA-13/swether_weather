@@ -1,17 +1,15 @@
-class MapService
+class MapService < BaseService
   class << self
-    def conn
-      url = 'http://www.mapquestapi.com/geocoding/v1/address?'
-      Faraday.new(url: url) do |faraday|
+    def get_coordinates(location)
+      response = conn(url).get('geocoding/v1/address?') do |faraday|
+        faraday.params['location'] = location
         faraday.params['key'] = ENV['map_api_key']
       end
+      get_json(response)
     end
 
-    def get_coordinates(location)
-      response = conn.get do |faraday|
-        faraday.params['location'] = location
-      end
-      JSON.parse(response.body, symbolize_names: true)
+    def url
+      url = 'http://www.mapquestapi.com/'
     end
   end
 end

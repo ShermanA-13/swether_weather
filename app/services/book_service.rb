@@ -1,13 +1,14 @@
-class BookService
-  def self.conn
-    url = 'http://openlibrary.org/search.json'
-    Faraday.new(url: url)
-  end
-
-  def self.get_books(location)
-    response = conn.get do |faraday|
-      faraday.params['q'] = location
+class BookService < BaseService
+  class << self
+    def url
+      url = 'http://openlibrary.org/search.json'
     end
-    JSON.parse(response.body, symbolize_names: true)
+
+    def get_books(location)
+      response = conn(url).get do |faraday|
+        faraday.params['q'] = location
+      end
+      get_json(response)
+    end
   end
 end

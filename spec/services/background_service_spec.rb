@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Background Service' do
   it 'returns a faraday response', :vcr do
-    connection = BackgroundService.conn
+    url = 'https://api.pexels.com/v1/search?'
+    connection = BackgroundService.conn(url)
     expect(connection).to be_a(Faraday::Connection)
   end
 

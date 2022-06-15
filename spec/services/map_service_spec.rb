@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Map Service' do
   it 'returns a faraday response', :vcr do
-    connection = MapService.conn
+    url = 'http://www.mapquestapi.com/'
+    connection = MapService.conn(url)
     expect(connection).to be_a(Faraday::Connection)
   end
 
