@@ -164,7 +164,7 @@ At this point you should be able to access the endpoints with postman.
 <p>
 
 ```sh
-Prefix Verb URI Pattern                                           Controller#Action
+                Prefix Verb URI Pattern                            Controller#Action
            api_v1_weather GET  /api/v1/weather(.:format)          api/v1/weather#index
        api_v1_backgrounds GET  /api/v1/backgrounds(.:format)      api/v1/backgrounds#index
        api_v1_book_search GET  /api/v1/book-search(.:format)      api/v1/book_search#index
