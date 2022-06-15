@@ -17,4 +17,15 @@ RSpec.describe 'Map Service' do
     expect(get_location[:results][0][:locations][0][:latLng]).to have_key(:lat)
     expect(get_location[:results][0][:locations][0][:latLng]).to have_key(:lng)
   end
+
+  it 'gets directions from mapquest given two inputs' do
+    from = 'chicago,il'
+    to = 'denver,co'
+
+    response = MapService.get_trip(from, to)
+    expect(response).to be_a Hash
+    expect(response).to have_key(:route)
+    expect(response[:route]).to have_key(:time)
+    expect(response[:route]).to have_key(:locations)
+  end
 end
