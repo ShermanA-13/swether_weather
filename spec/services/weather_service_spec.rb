@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Weather Service' do
   it 'returns a faraday response', :vcr do
-    connection = WeatherService.conn
+    url = 'https://api.openweathermap.org/data/2.5/onecall?'
+    connection = WeatherService.conn(url)
     expect(connection).to be_a(Faraday::Connection)
   end
 

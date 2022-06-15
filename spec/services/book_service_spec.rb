@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Book Service' do
   it 'returns a faraday response', :vcr do
-    connection = BookService.conn
+    url = 'http://openlibrary.org/search.json'
+    connection = BookService.conn(url)
     expect(connection).to be_a(Faraday::Connection)
   end
 

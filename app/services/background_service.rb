@@ -1,15 +1,15 @@
-class BackgroundService
+class BackgroundService < BaseService
   class << self
-    def conn
+    def url
       url = 'https://api.pexels.com/v1/search?'
-      Faraday.new(url: url, headers: { "Authorization": ENV['photo_api_key'] })
     end
 
     def get_image(location)
-      response = conn.get do |faraday|
+      response = conn(url).get do |faraday|
+        faraday.params['Authorization'] = ENV['photo_api_key']
         faraday.params['query'] = location
       end
-      JSON.parse(response.body, symbolize_names: true)
+      get_json(response)
     end
   end
 end
