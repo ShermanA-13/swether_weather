@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get '/book-search', to: 'book_search#index'
       post '/users', to: 'users#create'
       post '/sessions', to: 'sessions#create'
+      post '/trip', to: 'trip#create'
     end
   end
 end
