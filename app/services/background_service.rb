@@ -6,7 +6,7 @@ class BackgroundService < BaseService
 
     def get_image(location)
       response = conn(url).get do |faraday|
-        faraday.params['Authorization'] = ENV['photo_api_key']
+        faraday.headers['Authorization'] = ENV['photo_api_key']
         faraday.params['query'] = location
       end
       get_json(response)
